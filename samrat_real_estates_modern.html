@@ -1,0 +1,319 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Samrat Real Estates — Draft</title>
+  <meta name="description" content="Samrat Real Estates — farm, farmhouse, NA layout & residential preview." />
+  <style>
+    :root{
+      --accent:#007aff;
+      --bg:#fafafa;
+      --glass: rgba(255,255,255,0.7);
+      --card-shadow: 0 10px 30px rgba(20,20,30,0.08);
+      --text:#111;
+      --muted:#666;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+    header{position:fixed;left:0;right:0;top:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;z-index:1200;background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6));backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(10,10,20,0.04)}
+    header h1{font-size:18px;letter-spacing:-0.3px;margin:0;font-weight:700}
+    nav a{margin-left:18px;color:var(--muted);text-decoration:none;font-weight:600;transition:color .25s}
+    nav a:hover{color:var(--accent)}
+
+    /* big hero */
+    .hero{height:92vh;min-height:640px;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
+    .hero__bg{position:absolute;inset:0;background-size:cover;background-position:center center;transform-origin:center center;transition:transform 1.2s ease-out;z-index:0;filter:contrast(1.02) saturate(1.03)}
+    .hero__overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.16));z-index:1}
+    .hero__content{position:relative;z-index:2;color:white;padding:40px;max-width:980px}
+    .hero__title{font-size:44px;line-height:1.04;margin-bottom:12px;font-weight:700;letter-spacing:-1px;text-shadow:0 12px 40px rgba(0,0,0,0.45)}
+    .hero__lead{font-size:18px;color:rgba(255,255,255,0.95);margin-bottom:20px;text-shadow:0 8px 30px rgba(0,0,0,0.35)}
+
+    /* sections */
+    section.section{min-height:78vh;display:flex;align-items:center;justify-content:center;padding:80px 24px;position:relative;overflow:hidden}
+    section.section .section-bg{position:absolute;inset:0;background-size:cover;background-position:center center;z-index:0;transition:transform 1s ease-out, filter .6s ease-out;}
+    section.section .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.22));z-index:0}
+    section .inner{position:relative;z-index:2;max-width:980px;color:white;text-align:center}
+    section h2{font-size:36px;margin-bottom:10px}
+    section p{max-width:820px;margin:0 auto;color:rgba(255,255,255,0.95);font-size:16px;line-height:1.6}
+
+    /* contact */
+    .contact{background:white;color:var(--text);padding:72px 18px;box-shadow:var(--card-shadow);margin:36px auto;max-width:980px;border-radius:12px}
+    .contact h2{margin:0 0 10px 0;font-size:28px}
+    form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+    form .full{grid-column:1/-1}
+    input,textarea,select{padding:14px;border:1px solid #e6e6e6;border-radius:10px;font-size:15px;outline:none}
+    textarea{min-height:130px;resize:vertical}
+    .btn{background:var(--accent);color:white;padding:12px 18px;border-radius:10px;border:none;font-weight:700;cursor:pointer}
+    .muted{color:var(--muted);font-size:14px;margin-top:8px}
+
+    /* toast */
+    .toast{position:fixed;top:22px;right:22px;background:#111;color:#fff;padding:12px 16px;border-radius:10px;box-shadow:0 8px 30px rgba(10,10,20,0.25);opacity:0;transform:translateY(-10px) scale(.98);transition:all .36s ease;z-index:2400;pointer-events:none}
+    .toast.show{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+
+    /* cookie */
+    .cookie{position:fixed;left:50%;transform:translateX(-50%);bottom:22px;background:white;padding:12px 16px;border-radius:12px;box-shadow:0 12px 40px rgba(10,10,20,0.08);display:flex;gap:12px;align-items:center;z-index:2000}
+    .cookie button{background:var(--accent);color:white;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+
+    footer{padding:28px;text-align:center;color:var(--muted);font-size:14px;margin-top:28px}
+
+    /* responsive */
+    @media (max-width:900px){
+      header{padding:0 16px}
+      .hero__title{font-size:28px}
+      section h2{font-size:28px}
+      form{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Samrat Real Estates</h1>
+    <nav aria-label="Main nav">
+      <a href="#residential">Residential</a>
+      <a href="#farmhouses">Farm Houses</a>
+      <a href="#farms">Farms</a>
+      <a href="#nalayout">NA Layout</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <main style="margin-top:72px;">
+    <section class="hero" id="home" aria-label="Welcome">
+      <div class="hero__bg" id="heroBg"></div>
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <div class="hero__title">Samrat Real Estates</div>
+        <div class="hero__lead">Premium properties, farms and farmhouses across India — crafted for modern living and future investment.</div>
+      </div>
+    </section>
+
+    <!-- Residential -->
+    <section id="residential" class="section" aria-label="Residential layouts">
+      <div class="section-bg" id="resBg"></div>
+      <div class="overlay"></div>
+      <div class="inner">
+        <h2>Residential Layouts</h2>
+        <p>Modern planned residential layouts with clear titles and infrastructure — thoughtfully designed for families and investors.</p>
+      </div>
+    </section>
+
+    <!-- Farm Houses -->
+    <section id="farmhouses" class="section" aria-label="Farm houses">
+      <div class="section-bg" id="farmhouseBg"></div>
+      <div class="overlay"></div>
+      <div class="inner">
+        <h2>Farm Houses</h2>
+        <p>Serene Indian farmhouses — rustic charm with comfortable living. Perfect weekend houses or long-term retreats.</p>
+      </div>
+    </section>
+
+    <!-- Farms -->
+    <section id="farms" class="section" aria-label="Farms & land">
+      <div class="section-bg" id="farmsBg"></div>
+      <div class="overlay"></div>
+      <div class="inner">
+        <h2>Farms</h2>
+        <p>Fertile farmlands across India with strong agricultural potential. Invest in land that lasts.</p>
+      </div>
+    </section>
+
+    <!-- NA Layout -->
+    <section id="nalayout" class="section" aria-label="NA Layout sites">
+      <div class="section-bg" id="naBg"></div>
+      <div class="overlay"></div>
+      <div class="inner">
+        <h2>NA Layout Sites</h2>
+        <p>Approved NA layout sites with good connectivity — ready for development or resale.</p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section" style="background:transparent;padding:36px 20px">
+      <div style="width:100%;max-width:1100px;margin:0 auto;">
+        <div class="contact" role="region" aria-labelledby="contact-heading">
+          <h2 id="contact-heading">Contact Us</h2>
+          <p class="muted">Fill this short form — no backend yet. On submit you'll see a success message (no data leaves this page).</p>
+          <form id="contactForm" novalidate>
+            <input name="name" type="text" placeholder="Your name" required aria-label="Your name" />
+            <input name="email" type="email" placeholder="Your email" required aria-label="Your email" />
+            <textarea name="message" class="full" placeholder="Your message" aria-label="Your message" required></textarea>
+            <input name="phone" type="tel" placeholder="Phone (optional)" />
+            <div style="display:flex;gap:12px;align-items:center" class="full">
+              <button class="btn" type="submit">Send Message</button>
+              <div class="muted">Or reach us at <strong>info@samratrealestates.example</strong></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Thank you! We will get back to you as soon as possible.</div>
+
+  <div class="cookie" id="cookieBar" style="display:none">
+    <div style="font-size:14px;color:#222">We use cookies to improve your experience.</div>
+    <div style="flex:1"></div>
+    <button onclick="acceptCookies()">Accept</button>
+  </div>
+
+  <footer>© <span id="year"></span> Samrat Real Estates — Draft preview</footer>
+
+  <script>
+    // --- image sources (reliable direct links + fallbacks) ---
+    // Primary: high-res Unsplash images where available, Farm/Farmhouse: Wikimedia Commons photos (direct upload links proven to work).
+    const sources = {
+      hero: [
+        // Unsplash (modern city/real estate hero)
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80',
+        // fallback warm farmland hero (wikimedia)
+        'https://upload.wikimedia.org/wikipedia/commons/5/5e/Paddy_field_in_India%2801%29.jpg'
+      ],
+      residential: [
+        'https://images.unsplash.com/photo-1560448075-bb4e32f2ec0f?auto=format&fit=crop&w=2000&q=80',
+        'https://upload.wikimedia.org/wikipedia/commons/0/0b/Indian_paddy_fields.jpg'
+      ],
+      farmhouses: [
+        // Wikimedia farmhouse images (direct links)
+        'https://upload.wikimedia.org/wikipedia/commons/d/d9/Farm_house_in_Eranahalli_-_panoramio.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/5/58/SunderbanFarmHouse.JPG'
+      ],
+      farms: [
+        'https://upload.wikimedia.org/wikipedia/commons/5/5e/Paddy_field_in_India%2801%29.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/7/7e/Indian_farms.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/0/0b/Indian_paddy_fields.jpg'
+      ],
+      na: [
+        'https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=2000&q=80',
+        'https://upload.wikimedia.org/wikipedia/commons/5/5e/Paddy_field_in_India%2801%29.jpg'
+      ]
+    };
+
+    // Utility: try to preload list of images and return first that loads successfully
+    function firstLoadable(urls, timeout = 6000) {
+      return new Promise((resolve) => {
+        let resolved = false;
+        let tries = urls.length;
+        urls.forEach(url => {
+          const img = new Image();
+          let timer = setTimeout(() => {
+            if (!resolved) {
+              tries--; if (tries === 0) { resolved = true; resolve(null); }
+            }
+          }, timeout);
+          img.onload = () => {
+            if (!resolved) { resolved = true; clearTimeout(timer); resolve(url); }
+          };
+          img.onerror = () => {
+            clearTimeout(timer);
+            tries--; if (!resolved && tries === 0) { resolved = true; resolve(null); }
+          };
+          img.src = url;
+        });
+      });
+    }
+
+    // Set backgrounds robustly with fallback attempts
+    async function setSectionBg(id, urls) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const chosen = await firstLoadable(urls);
+      if (chosen) {
+        el.style.backgroundImage = `url('${chosen}')`;
+        el.style.backgroundSize = 'cover';
+        el.style.backgroundPosition = 'center center';
+        el.style.filter = 'none';
+      } else {
+        // final fallback - subtle gradient
+        el.style.background = 'linear-gradient(120deg,#e6f7ff,#f6fff6)';
+      }
+    }
+
+    // Attach backgrounds
+    (async function attachBackgrounds(){
+      await setSectionBg('heroBg', sources.hero);
+      await setSectionBg('resBg', sources.residential);
+      await setSectionBg('farmhouseBg', sources.farmhouses);
+      await setSectionBg('farmsBg', sources.farms);
+      await setSectionBg('naBg', sources.na);
+      // small zoom-in effect on loaded backgrounds
+      document.querySelectorAll('.section-bg, .hero__bg').forEach(bg => {
+        bg.style.transform = 'scale(1.06)'; // subtle starting zoom
+        window.setTimeout(()=> bg.style.transform = 'scale(1)', 50);
+      });
+    })();
+
+    // Parallax-ish subtle movement on scroll
+    function parallaxTick(){
+      const scrolled = window.scrollY || window.pageYOffset;
+      document.querySelectorAll('.section').forEach((sec)=>{
+        const rect = sec.getBoundingClientRect();
+        const bg = sec.querySelector('.section-bg');
+        if (!bg) return;
+        const offset = Math.round((rect.top - window.innerHeight/2) * 0.08);
+        bg.style.transform = `translate3d(0, ${offset}px, 0) scale(1.02)`;
+      });
+      // hero zoom move
+      const heroBg = document.getElementById('heroBg');
+      if (heroBg) {
+        const hOff = (window.scrollY || window.pageYOffset) * 0.12;
+        heroBg.style.transform = `translate3d(0, ${hOff}px, 0) scale(1.03)`;
+      }
+    }
+    window.addEventListener('scroll', parallaxTick, {passive:true});
+    window.addEventListener('resize', parallaxTick);
+    parallaxTick();
+
+    // Toast & contact form (no backend)
+    const toast = document.getElementById('toast');
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      // quick validation
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+      if (!name || !email || !message) {
+        showToast('Please complete name, email and message.');
+        return;
+      }
+      showToast('Thank you! We will get back to you as soon as possible.');
+      form.reset();
+    });
+
+    function showToast(text, ms=3500){
+      toast.textContent = text;
+      toast.classList.add('show');
+      setTimeout(()=> toast.classList.remove('show'), ms);
+    }
+
+    // Cookie banner
+    const cookieBar = document.getElementById('cookieBar');
+    function acceptCookies(){ localStorage.setItem('samrat_cookies', '1'); cookieBar.style.display='none'; }
+    if (!localStorage.getItem('samrat_cookies')) {
+      cookieBar.style.display = 'flex';
+    }
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth anchor scrolling for nav
+    document.querySelectorAll('nav a').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const id = a.getAttribute('href').replace('#','');
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    // Accessibility: allow ESC to close toast
+    window.addEventListener('keydown', (e)=>{ if (e.key==='Escape') toast.classList.remove('show'); });
+
+    // Final: quick logging for failures (useful during preview)
+    window.addEventListener('error', (ev)=>{ /* silently ignore image load errors in UI */ }, true);
+  </script>
+</body>
+</html>
